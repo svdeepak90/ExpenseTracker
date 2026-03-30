@@ -1,6 +1,12 @@
 # Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.17.
+This project was originally generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.17, and has been recently upgraded to **Angular 21**.
+
+## Recent Updates
+
+- **Angular 21 Upgrade**: The application was systematically upgraded from v17 to v21.
+- **Control Flow Migration**: Templates now use the modern block control flow syntax (`@if`, `@for`).
+- **Application Builder**: The project utilizes the modern `application` builder (esbuild) for faster transpilation.
 
 ## Development server
 
@@ -24,4 +30,4 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 ## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

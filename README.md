@@ -1,6 +1,8 @@
 # Expense Tracker
 
-A modern, responsive, and secure full-stack web application for managing personal expenses. 
+![Angular Version](https://img.shields.io/badge/Angular-21-red.svg?logo=angular) ![Spring Boot](https://img.shields.io/badge/Spring_Boot-3-brightgreen.svg?logo=spring-boot)
+
+A modern, responsive, and secure full-stack web application for managing personal expenses. *(Recently upgraded to Angular 21!)* 
 
 This application features a sophisticated dashboard for visualizing spending habits by category, detailed transaction management, and secure user authentication. Built with a Java Spring Boot backend and an Angular frontend styled beautifully with Tailwind CSS.
 
@@ -16,7 +18,7 @@ This application features a sophisticated dashboard for visualizing spending hab
 ## 🛠️ Tech Stack
 
 ### Frontend
-- **Framework:** Angular 17+
+- **Framework:** Angular 21 (Utilizing modern block control flow and the native application builder)
 - **Styling:** Tailwind CSS for a sleek, responsive, and modern UI.
 - **State & Routing:** Standard Angular forms, HttpClient, and Router.
 

@@ -5,10 +5,9 @@ import { ExpenseFormComponent } from '../expense-form/expense-form.component';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-expense-list',
-  standalone: true,
-  imports: [CommonModule, CurrencyPipe, DatePipe, ExpenseFormComponent, FormsModule],
-  templateUrl: './expense-list.component.html'
+    selector: 'app-expense-list',
+    imports: [CommonModule, CurrencyPipe, DatePipe, ExpenseFormComponent, FormsModule],
+    templateUrl: './expense-list.component.html'
 })
 export class ExpenseListComponent implements OnInit {
   expenses: Expense[] = [];

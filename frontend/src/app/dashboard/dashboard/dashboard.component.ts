@@ -4,10 +4,9 @@ import { ExpenseService, Expense } from '../../services/expense.service';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-dashboard',
-  standalone: true,
-  imports: [CommonModule, CurrencyPipe, RouterLink],
-  templateUrl: './dashboard.component.html'
+    selector: 'app-dashboard',
+    imports: [CommonModule, CurrencyPipe, RouterLink],
+    templateUrl: './dashboard.component.html'
 })
 export class DashboardComponent implements OnInit {
   expenses: Expense[] = [];

@@ -4,10 +4,9 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
-  selector: 'app-navbar',
-  standalone: true,
-  imports: [CommonModule, RouterLink, RouterLinkActive],
-  templateUrl: './navbar.component.html'
+    selector: 'app-navbar',
+    imports: [CommonModule, RouterLink, RouterLinkActive],
+    templateUrl: './navbar.component.html'
 })
 export class NavbarComponent {
   authService = inject(AuthService);

@@ -1,13 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ExpenseService, Expense } from '../../services/expense.service';
-import { CommonModule } from '@angular/common';
+
 
 @Component({
-  selector: 'app-expense-form',
-  standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
-  templateUrl: './expense-form.component.html'
+    selector: 'app-expense-form',
+    imports: [ReactiveFormsModule],
+    templateUrl: './expense-form.component.html'
 })
 export class ExpenseFormComponent implements OnInit {
   @Input() expense: Expense | null = null;
