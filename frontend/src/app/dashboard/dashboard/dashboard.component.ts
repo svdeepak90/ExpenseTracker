@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { ExpenseService, Expense } from '../../services/expense.service';
+import { CurrencyService } from '../../services/currency.service';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -15,7 +16,7 @@ export class DashboardComponent implements OnInit {
   
   categories: {name: string, total: number}[] = [];
 
-  constructor(private expenseService: ExpenseService) {}
+  constructor(private expenseService: ExpenseService, public currencyService: CurrencyService) {}
 
   ngOnInit(): void {
     this.expenseService.getExpenses().subscribe({

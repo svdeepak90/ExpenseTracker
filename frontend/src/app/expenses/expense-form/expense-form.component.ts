@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ExpenseService, Expense } from '../../services/expense.service';
-
+import { CurrencyService } from '../../services/currency.service';
+import { getCurrencySymbol } from '@angular/common';
 
 @Component({
     selector: 'app-expense-form',
@@ -17,7 +18,7 @@ export class ExpenseFormComponent implements OnInit {
   isEdit = false;
   showNewCategoryInput = false;
 
-  constructor(private fb: FormBuilder, private expenseService: ExpenseService) {
+  constructor(private fb: FormBuilder, private expenseService: ExpenseService, public currencyService: CurrencyService) {
     this.expenseForm = this.fb.group({
       title: ['', Validators.required],
       amount: ['', [Validators.required, Validators.min(0.01)]],
@@ -26,6 +27,10 @@ export class ExpenseFormComponent implements OnInit {
       date: [new Date().toISOString().split('T')[0], Validators.required],
       notes: ['']
     });
+  }
+
+  get currencySymbol() {
+    return getCurrencySymbol(this.currencyService.currencyCode(), 'narrow');
   }
 
   ngOnInit(): void {

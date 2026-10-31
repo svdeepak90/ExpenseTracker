@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 import { ExpenseService, Expense } from '../../services/expense.service';
+import { CurrencyService } from '../../services/currency.service';
 import { ExpenseFormComponent } from '../expense-form/expense-form.component';
 import { FormsModule } from '@angular/forms';
-
+import * as XLSX from 'xlsx';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
 @Component({
     selector: 'app-expense-list',
     imports: [CommonModule, CurrencyPipe, DatePipe, ExpenseFormComponent, FormsModule],
@@ -19,7 +22,7 @@ export class ExpenseListComponent implements OnInit {
   filterCategory = '';
   categories: string[] = ['Food', 'Travel', 'Bills', 'Entertainment', 'Other'];
 
-  constructor(private expenseService: ExpenseService) {}
+  constructor(private expenseService: ExpenseService, public currencyService: CurrencyService) {}
 
   ngOnInit(): void {
     this.loadExpenses();
@@ -74,5 +77,52 @@ export class ExpenseListComponent implements OnInit {
     if (refresh) {
       this.loadExpenses();
     }
+  }
+
+  exportToCSV() {
+    const csvData = this.filteredExpenses.map(e => ({
+      Date: new Date(e.date).toLocaleDateString(),
+      Title: e.title,
+      Category: e.category,
+      Amount: e.amount
+    }));
+    const worksheet = XLSX.utils.json_to_sheet(csvData);
+    const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+    XLSX.writeFile(workbook, 'expenses.csv');
+  }
+
+  exportToExcel() {
+    const excelData = this.filteredExpenses.map(e => ({
+      Date: new Date(e.date).toLocaleDateString(),
+      Title: e.title,
+      Category: e.category,
+      Amount: e.amount
+    }));
+    const worksheet = XLSX.utils.json_to_sheet(excelData);
+    const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+    XLSX.writeFile(workbook, 'expenses.xlsx');
+  }
+
+  exportToPDF() {
+    const doc = new jsPDF();
+    doc.text('Expense Report', 14, 15);
+    
+    const tableData = this.filteredExpenses.map(e => [
+      new Date(e.date).toLocaleDateString(),
+      e.title,
+      e.category,
+      `$${e.amount.toFixed(2)}`
+    ]);
+
+    autoTable(doc, {
+      head: [['Date', 'Title', 'Category', 'Amount']],
+      body: tableData,
+      startY: 20,
+      theme: 'grid',
+      styles: { fontSize: 10, cellPadding: 2 },
+      headStyles: { fillColor: [79, 70, 229] }
+    });
+
+    doc.save('expenses.pdf');
   }
 }

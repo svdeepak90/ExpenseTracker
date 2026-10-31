@@ -7,7 +7,7 @@
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
     <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex flex-col items-center justify-center">
       <h3 class="text-gray-500 text-sm font-medium uppercase tracking-widest">Total Expenses</h3>
-      <p class="text-4xl font-bold text-gray-900 mt-2">{{ totalExpenses | currency }}</p>
+      <p class="text-4xl font-bold text-gray-900 mt-2">{{ totalExpenses | currency : currencyService.currencyCode() }}</p>
     </div>
 
     <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 col-span-2">
@@ -19,7 +19,7 @@
         @for (cat of categories; track cat) {
           <li class="flex justify-between items-center">
             <span class="text-gray-700 font-medium">{{ cat.name }}</span>
-            <span class="text-gray-900 font-semibold">{{ cat.total | currency }}</span>
+            <span class="text-gray-900 font-semibold">{{ cat.total | currency : currencyService.currencyCode() }}</span>
           </li>
         }
       </ul>
@@ -49,7 +49,7 @@
             </div>
           </div>
           <div class="text-sm font-bold text-gray-900">
-            -{{ exp.amount | currency }}
+            -{{ exp.amount | currency : currencyService.currencyCode() }}
           </div>
         </div>
       }
